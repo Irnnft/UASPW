@@ -1,8 +1,26 @@
+import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const [showForm, setShowForm] = useState(false);
+  const router = useRouter();
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
+  const handleNext = (e) => {
+    e.preventDefault();
+    // Disini bisa ditambahkan logika untuk menyimpan data form
+    // Kemudian redirect ke halaman kegiatan atau tutup form
+    setShowForm(false);
+    // Uncomment jika ingin redirect ke halaman kegiatan
+    // router.push('/kegiatan');
+  };
+
   return (
     <>
       <Header />
@@ -12,10 +30,10 @@ export default function Home() {
         {/* Menu kiri */}
         <div className="flex gap-6 items-center">
           <a href="#" className="text-white font-bold text-lg">HOME</a>
-          <Link href="/dipakai" className="text-white font-bold text-lg">PEMINJAMAN</Link>
+          <Link href="/transaksi" className="text-white font-bold text-lg">TRANSAKSI</Link>
         </div>
 
-        {/* Search dan Tombol + */}
+        {}
         <div className="mt-3 sm:mt-0 flex items-center gap-3">
           <div className="relative">
             <input
@@ -27,45 +45,83 @@ export default function Home() {
               🔍
             </span>
           </div>
-          <Link href="/peminjaman" className="bg-white text-black text-xl font-bold w-10 h-10 flex items-center justify-center rounded-full shadow hover:scale-105 transition">
+          <button 
+            onClick={toggleForm}
+            className="bg-white text-black text-xl font-bold w-10 h-10 flex items-center justify-center rounded-full shadow hover:scale-105 transition"
+          >
             +
-          </Link>
+          </button>
         </div>
       </nav>
 
-      <main className="container mx-auto px-4 py-8">
-  <div className="overflow-hidden rounded-lg shadow-lg border border-gray-300">
-    {/* Header kolom */}
-    <div className="grid grid-cols-4 bg-gray-100 border-b border-gray-300 font-semibold text-center">
-      <div className="py-3 border-r border-gray-300">Kode Proyektor</div>
-      <div className="py-3 border-r border-gray-300">Merek</div>
-      <div className="py-3 border-r border-gray-300">No. Seri</div>
-      <div className="py-3">Status</div>
-    </div>
+      {/* Form Proyektor Popup */}
+      {showForm && (
+        <div className="container mx-auto px-4 py-4">
+          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md mx-auto">
+            <h2 className="text-xl font-semibold mb-4">Form Proyektor</h2>
+            <form className="space-y-4">
+              <div>
+                <label className="block text-gray-700 mb-2">Kode Proyektor</label>
+                <input type="text" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Input Kode Proyektor" />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Merek</label>
+                <input type="text" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Input Merek" />
+              </div>
+              <div>
+                <label className="block text-gray-700 mb-2">Kode Seri Proyektor</label>
+                <input type="text" className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Input Kode Seri Proyektor" />
+              </div>
 
-    {/* Isi data (contoh 5 proyektor) */}
-    {[
-      { kode: "INF-2023-R101-001", merek: "Epson", seri: "SN-001", status: "Tersedia" },
-      { kode: "INF-2023-R101-002", merek: "Canon", seri: "SN-002", status: "Sedang dipakai" },
-      { kode: "INF-2023-R101-003", merek: "BenQ", seri: "SN-003", status: "Rusak" },
-      { kode: "INF-2023-R101-004", merek: "Acer", seri: "SN-004", status: "Tersedia" },
-      { kode: "INF-2023-R101-005", merek: "Sony", seri: "SN-005", status: "Sedang dipakai" },
-    ].map((item, index) => (
-      <div key={index} className="grid grid-cols-4 border-t border-gray-200 text-center hover:bg-gray-50 transition">
-        <div className="py-3 border-r border-gray-200">{item.kode}</div>
-        <div className="py-3 border-r border-gray-200">{item.merek}</div>
-        <div className="py-3 border-r border-gray-200">{item.seri}</div>
-        <div className={`py-3 font-medium ${
-          item.status === "Tersedia" ? "text-green-600" :
-          item.status === "Sedang dipakai" ? "text-yellow-600" :
-          "text-red-600"
-        }`}>
-          {item.status}
+              <div className="flex justify-between">
+
+                {/* Tombol Next */}
+                <button 
+                  type="button" 
+                  onClick={handleNext}
+                  className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition font-semibold"
+                >
+                  SUBMIT
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
-</main>
+      )}
+
+      <main className="container mx-auto px-4 py-8">
+        <div className="overflow-hidden rounded-lg shadow-lg border border-gray-300">
+          {/* Header kolom */}
+          <div className="grid grid-cols-4 bg-gray-100 border-b border-gray-300 font-semibold text-center">
+            <div className="py-3 border-r border-gray-300">Kode Proyektor</div>
+            <div className="py-3 border-r border-gray-300">Merek</div>
+            <div className="py-3 border-r border-gray-300">No. Seri</div>
+            <div className="py-3">Status</div>
+          </div>
+
+          {/* Isi data (contoh 5 proyektor) */}
+          {[
+            { kode: "INF-2023-R101-001", merek: "Epson", seri: "SN-001", status: "Tersedia" },
+            { kode: "INF-2023-R101-002", merek: "Canon", seri: "SN-002", status: "Sedang dipakai" },
+            { kode: "INF-2023-R101-003", merek: "BenQ", seri: "SN-003", status: "Rusak" },
+            { kode: "INF-2023-R101-004", merek: "Acer", seri: "SN-004", status: "Tersedia" },
+            { kode: "INF-2023-R101-005", merek: "Sony", seri: "SN-005", status: "Sedang dipakai" },
+          ].map((item, index) => (
+            <div key={index} className="grid grid-cols-4 border-t border-gray-200 text-center hover:bg-gray-50 transition">
+              <div className="py-3 border-r border-gray-200">{item.kode}</div>
+              <div className="py-3 border-r border-gray-200">{item.merek}</div>
+              <div className="py-3 border-r border-gray-200">{item.seri}</div>
+              <div className={`py-3 font-medium ${
+                item.status === "Tersedia" ? "text-green-600" :
+                item.status === "Sedang dipakai" ? "text-yellow-600" :
+                "text-red-600"
+              }`}>
+                {item.status}
+              </div>
+            </div>
+          ))}
+        </div>
+      </main>
 
       <Footer />
     </>
