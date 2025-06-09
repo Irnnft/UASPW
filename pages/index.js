@@ -234,7 +234,6 @@ export default function Home() {
             <button
               onClick={toggleForm}
               className="bg-gradient-to-r from-green-400 to-green-600 text-white p-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-200 flex items-center justify-center group"
-              aria-label="Tambah proyektor"
             >
               <Plus size={20} className="group-hover:rotate-90 transition-transform duration-200" />
             </button>
@@ -260,7 +259,6 @@ export default function Home() {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-100">
             <div className="bg-gradient-to-r from-green-400 to-green-600 p-6 rounded-t-2xl">
               <h2 className="text-2xl font-bold text-white flex items-center gap-3">
-                {editMode ? <Edit size={24} /> : <Plus size={24} />}
                 {editMode ? 'Edit' : 'Tambah'} Penanggung Jawab
               </h2>
             </div>
@@ -270,7 +268,7 @@ export default function Home() {
                   <input
                     type="text"
                     name="kode_proyektor"
-className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                    defaultValue={editData?.kode_proyektor || ''}
+                    className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                    defaultValue={editData?.kode_proyektor || ''}
                     required
                     readOnly={editMode}
                     placeholder="Masukkan kode proyektor"
@@ -282,7 +280,7 @@ className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-gre
                   <input
                     type="text"
                     name="merek"
-className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                    defaultValue={editData?.merek || ''}
+                    className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                    defaultValue={editData?.merek || ''}
                     required
                     placeholder="Masukkan merek proyektor"
                   />
@@ -293,7 +291,7 @@ className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-gre
                   <input
                     type="text"
                     name="nomor_seri"
-className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                    defaultValue={editData?.nomor_seri || ''}
+                    className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                    defaultValue={editData?.nomor_seri || ''}
                     required
                     placeholder="Masukkan nomor seri"
                   />
@@ -304,7 +302,7 @@ className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-gre
                   <input
                     type="text"
                     name="status"
-className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                    defaultValue={editData?.status || ''}
+                    className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                    defaultValue={editData?.status || ''}
                     required
                     placeholder="Masukkan status proyektor"
                   />
@@ -354,7 +352,7 @@ className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-gre
                     <label className="block text-sm font-semibold text-gray-700">Kode Proyektor</label>
                     <input
                       type="text"
-className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                      value={searchParams.kode_proyektor}
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                      value={searchParams.kode_proyektor}
                       onChange={(e) => setSearchParams({ ...searchParams, kode_proyektor: e.target.value })}
                       placeholder="Cari berdasarkan kode"
                     />
@@ -364,7 +362,7 @@ className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-gre
                     <label className="block text-sm font-semibold text-gray-700">Nomor Seri</label>
                     <input
                       type="text"
-className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                      value={searchParams.nomor_seri}
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                      value={searchParams.nomor_seri}
                       onChange={(e) => setSearchParams({ ...searchParams, nomor_seri: e.target.value })}
                       placeholder="Cari berdasarkan seri"
                     />
@@ -374,7 +372,7 @@ className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-gre
                     <label className="block text-sm font-semibold text-gray-700">Merek</label>
                     <input
                       type="text"
-className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                      value={searchParams.merek}
+                      className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                      value={searchParams.merek}
                       onChange={(e) => setSearchParams({ ...searchParams, merek: e.target.value })}
                       placeholder="Cari berdasarkan merek"
                     />
@@ -383,7 +381,7 @@ className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-gre
                   <div className="space-y-2">
                     <label className="block text-sm font-semibold text-gray-700">Status</label>
                     <select
-className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                      value={searchParams.status}
+                    className="w-full border-2 border-gray-200 rounded-xl px-4 py-3 focus:border-green-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 outline-none bg-gray-100 text-gray-800"                      value={searchParams.status}
                       onChange={(e) => setSearchParams({ ...searchParams, status: e.target.value })}
                     >
                       <option value="">Semua Status</option>
